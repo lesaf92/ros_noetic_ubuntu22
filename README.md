@@ -19,3 +19,6 @@ mamba install rosdep
 rosdep init
 rosdep update
 ```
+4. Put at the end of your `bashrc` file
+`conda deactivate`
+`conda activate ros_env`
