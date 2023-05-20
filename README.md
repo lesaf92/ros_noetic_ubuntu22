@@ -36,6 +36,9 @@ conda activate ros_env
 7. Install the necessary ROS packages using `conda install -c robostack <package>`, eventually it will ask for installing additional packages, just confirm and carry on
 ```shell
 conda install -c robostack ros-noetic-gmapping
+conda install -c robostack ros-noetic-amcl
+conda install -c robostack ros-noetic-move-base
+conda install -c robostack ros-noetic-map-server
 ```
 
 
