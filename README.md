@@ -40,7 +40,21 @@ conda install -c robostack ros-noetic-amcl
 conda install -c robostack ros-noetic-move-base
 conda install -c robostack ros-noetic-map-server
 ```
+... (still updating)
 
+## Creating catkin workspace
+After ROS and all packages are installed, create a catkin workspace to enable local custom packages
+1. Create the folder and initialization
+```shell
+mkdir -p ~/catkin_ws/src
+cd ~/catkin_ws/src
+catkin_init_workspace
+cd ~/catkin_ws
+catkin_make
+echo "source ~/catkin_ws/devel/setup.bash" >> ~/.bashrc
+source ~/.bashrc
+```
+2. In a new terminal, download or clone to `catkin_ws/src` the folder `rmp_2023` in this repository
 
 ## Disabling env (in case ROS is not needed anymore)
 
