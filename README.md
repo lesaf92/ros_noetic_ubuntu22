@@ -57,11 +57,13 @@ source ~/.bashrc
 ```
 2. In a new terminal, download or clone to `catkin_ws/src` the folder `rmp_2023` in this repository
 3. Go back to `catkin_ws` and run `catkin_make`
-4. Run the test launch file, you should see the robot Pioneer in the "shapes" Gazebo environment (see image below)
+4. Launch the `rmp_test` file to start a Gazebo simulation. You should see the Pioneer2DX robot in the "shapes" environment (see image below)
 ```shell
 roslaunch rmp_2023 rmp_test.launch
 ```
 ![Alt text](assets/rmp_test_gazebo_screen.png?raw=true "test env and robot")
+
+The installation is now complete
 
 ## Disabling env (in case ROS is not needed anymore)
 
