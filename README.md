@@ -42,7 +42,7 @@ conda install -c robostack ros-noetic-map-server
 ```
 
 
-## Disabling env
+## Disabling env (in case ROS is not needed anymore)
 
 To prevent loading the env for every new terminal session, comment the section below in your `bashrc`
 ```shell
