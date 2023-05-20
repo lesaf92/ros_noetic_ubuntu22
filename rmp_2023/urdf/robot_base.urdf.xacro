@@ -2,8 +2,14 @@
 <robot name="pioneer" xmlns:xacro="http://www.ros.org/wiki/xacro">
   <xacro:macro name="robot_base">
 
-  <!-- Dummy link -->
+  <gazebo reference="castor_wheel_link">
+    <material>Gazebo/Black</material>
+  </gazebo>
+  <gazebo reference="lidar_link">
+    <material>Gazebo/Black</material>
+  </gazebo>
   
+  <!-- Dummy link -->
   <link name="base_dummy">
     <visual>
         <origin xyz="0 0 0" rpy="0 0 0" />
@@ -12,7 +18,8 @@
         </geometry>
     </visual>
   </link>
-  
+  <!-- BASE LINK  -->
+
   <link name="base_link">
     <inertial>
       <mass value="2"/>
@@ -21,30 +28,105 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="model://pioneer2dx/model.sdf"/>
+        <mesh filename="model://pioneer2dx/meshes/chassis.dae"/>
       </geometry>
     </visual>
 
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
-        <mesh filename="model://pioneer2dx/model.sdf"/>
+        <mesh filename="model://pioneer2dx/meshes/chassis.dae"/>
       </geometry>
     </collision>
   </link>
-  
+
   <joint name="base_link_joint" type="fixed">
       <origin xyz="0 0 0" rpy="0 0 0" />
       <parent link="base_dummy"/>
       <child link="base_link" />
   </joint>
-  
+  <!-- WHEELS  -->
+  <link name="left_wheel_link">
+    <inertial>
+      <mass value="0.1"/>
+      <inertia ixx="0.0407" ixy="0.0" ixz="0.0" iyy="0.0407" iyz="0.0" izz="0.0756"/>
+    </inertial>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="model://pioneer2dx/meshes/wheel.dae"/>
+      </geometry>
+    </visual>
 
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="model://pioneer2dx/meshes/wheel.dae"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint name="left_wheel_joint" type="fixed">
+      <origin xyz="0.1 .17 -0.09" rpy="0 1.5707 0" />
+      <parent link="base_link"/>
+      <child link="left_wheel_link" />
+  </joint>
+
+  <link name="right_wheel_link">
+    <inertial>
+      <mass value="0.1"/>
+      <inertia ixx="0.0407" ixy="0.0" ixz="0.0" iyy="0.0407" iyz="0.0" izz="0.0756"/>
+    </inertial>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="model://pioneer2dx/meshes/wheel.dae"/>
+      </geometry>
+    </visual>
+
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="model://pioneer2dx/meshes/wheel.dae"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint name="right_wheel_joint" type="fixed">
+      <origin xyz="0.1 -.17 -0.09" rpy="0 1.5707 3.1415" />
+      <parent link="base_link"/>
+      <child link="right_wheel_link" />
+  </joint>
+
+  <link name="castor_wheel_link">
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <sphere radius="0.04"/>
+      </geometry>
+      <material name="black">
+            <color rgba="1 1 1 1"/>
+      </material>
+    </visual>
+
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <sphere radius="0.04"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint name="castor_wheel_joint" type="fixed">
+      <origin xyz="-0.200 0 -0.16" rpy="0 0 0" />
+      <parent link="base_link"/>
+      <child link="castor_wheel_link" />
+  </joint>
+
+  
+  <!-- LIDAR -->
   <link name="lidar_link">
     <visual>
-      <pose xyz="0 0 0.3"/>
+      <pose xyz="0 0 0"/>
       <geometry>
-        <box size="0.001 0.001 0.001" />
+        <cylinder length="0.05" radius="0.049"/>
       </geometry>
     </visual>
   </link>
@@ -52,7 +134,7 @@
   <joint name="lidar_joint" type="fixed">
     <parent link="base_link"/>
     <child link="lidar_link"/>
-    <origin xyz="0 0 0.3"/>
+    <origin xyz="0 0 0.085"/>
   </joint>
 
   </xacro:macro>

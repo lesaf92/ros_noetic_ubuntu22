@@ -25,7 +25,7 @@
       <odometryTopic>odom</odometryTopic>
       <odometryFrame>odom</odometryFrame>
       <odometryRate>100.0</odometryRate>
-      <robotBaseFrame>base_link</robotBaseFrame>
+      <robotBaseFrame>base_dummy</robotBaseFrame>
       <publishTF>true</publishTF>
     </plugin>
   </gazebo>

@@ -8,11 +8,10 @@
               -x 2.0
               -y 0.0
               -z 0.1
-              -Y 0.0
+              -Y 3.1416
               -param robot_description" >
   </node>
 
-  <!-- <include file="$(find gazebo_ros)/launch/willowgarage_world.launch" /> -->
   <include file="$(find gazebo_ros)/launch/shapes_world.launch" /> 
 
   <!-- Publish joint values -->
