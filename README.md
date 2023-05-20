@@ -39,6 +39,7 @@ conda install -c robostack ros-noetic-gmapping
 conda install -c robostack ros-noetic-amcl
 conda install -c robostack ros-noetic-move-base
 conda install -c robostack ros-noetic-map-server
+conda install -c robostack ros-noetic-teleop-twist-keyboard
 ```
 ... (still updating)
 
@@ -56,7 +57,7 @@ source ~/.bashrc
 ```
 2. In a new terminal, download or clone to `catkin_ws/src` the folder `rmp_2023` in this repository
 3. Go back to `catkin_ws` and run `catkin_make`
-4. Run the test launch file, you should see the robot Pioneer in the Gazebo environment
+4. Run the test launch file, you should see the robot Pioneer in the "shapes" Gazebo environment
 ```shell
 roslaunch rmp_2023 rmp_test.launch
 ```
