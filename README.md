@@ -58,7 +58,7 @@ source ~/.bashrc
 3. Go back to `catkin_ws` and run `catkin_make`
 4. Run the test launch file, you should see the robot Pioneer in the Gazebo environment
 ```shell
-roslaunch rmp_2023 rmp_slam.launch
+roslaunch rmp_2023 rmp_test.launch
 ```
 
 ## Disabling env (in case ROS is not needed anymore)
