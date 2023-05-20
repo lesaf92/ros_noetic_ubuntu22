@@ -55,8 +55,8 @@ echo "source ~/catkin_ws/devel/setup.bash" >> ~/.bashrc
 source ~/.bashrc
 ```
 2. In a new terminal, download or clone to `catkin_ws/src` the folder `rmp_2023` in this repository
-3. Go back to `catkin_ws`and run `catkin_make`
-4. Run the test launch file
+3. Go back to `catkin_ws` and run `catkin_make`
+4. Run the test launch file, you should see the robot Pioneer in the Gazebo environment
 ```shell
 roslaunch rmp_2023 rmp_slam.launch
 ```
