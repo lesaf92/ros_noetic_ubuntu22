@@ -4,16 +4,16 @@ Instructions for installing ROS Noetic on Ubuntu 22.04
 ## Install
 
 1. Install utils
-```
+```console
 sudo apt-get install htop python3-pip net-tools curl
 ```
 2. Install mamba
-```
+```console
 curl -L -O "https://github.com/conda-forge/miniforge/releases/latest/download/Mambaforge-$(uname)-$(uname -m).sh"
 bash Mambaforge-$(uname)-$(uname -m).sh
 ```
 3. Install and configure robostack
-```
+```console
 mamba create -n ros_env python=3.9 -c conda-forge
 mamba activate ros_env
 conda config --env --add channels conda-forge
@@ -27,17 +27,17 @@ rosdep init
 rosdep update
 ```
 4. Put at the end of your `bashrc` file
-```
+```console
 conda deactivate
 conda activate ros_env
 ```
 5. Open a new terminal and test `roscore`, if everything went fine ROS should be installed successfully
 6. Always do the following steps in the `ros_env` environment
-7. 
+7. Install the necessary ROS packages using `conda install -c robostack <package>`
 ## Disabling env
 
 To prevent loading the env for every new terminal session, comment the section below in your `bashrc`
-```
+```console
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
 __conda_setup="$('/home/luiz/mambaforge/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
