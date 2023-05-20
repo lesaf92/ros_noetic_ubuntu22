@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+
+<robot name="pioneer" xmlns:xacro="http://www.ros.org/wiki/xacro">
+	
+	<!-- Import urdf -->
+	<xacro:include filename="$(find rmp_2023)/urdf/robot_base.urdf.xacro" /> 
+	<xacro:include filename="$(find rmp_2023)/urdf/controller.gazebo.xacro" />
+	<xacro:include filename="$(find rmp_2023)/urdf/lidar.gazebo.xacro" />
+
+	<xacro:macro name="robot">
+		<xacro:robot_base/>
+		<xacro:controller/>
+		<xacro:lidar/>
+	</xacro:macro>
+
+   <xacro:robot/>
+
+</robot>

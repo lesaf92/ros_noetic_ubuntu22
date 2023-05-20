@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <xacro:macro name="lidar" params="">
+		<gazebo reference="lidar_link">
+        <sensor name='sensor' type='ray'> 
+        <!--<sensor name='sensor' type='gpu_ray'> -->
+          <!-- <pose frame=''>0.0 0.0 0.5 0.0 0.0 0.0</pose> -->
+          <visualize>0</visualize>
+          <update_rate>50</update_rate>
+          <ray>
+            <scan>
+              <horizontal>
+                <samples>400</samples>
+                <resolution>1</resolution>
+                <min_angle>0</min_angle>
+                <max_angle>6.2832</max_angle>
+              </horizontal>
+              <vertical>
+                <samples>1</samples>
+                <min_angle>0</min_angle>
+                <max_angle>0</max_angle>
+              </vertical>
+            </scan>
+            <range>
+              <min>0.05</min>
+              <max>10</max>
+              <resolution>0.02</resolution>
+            </range>
+            <noise>
+              <type>gaussian</type>
+              <mean>0</mean>
+              <stddev>0.008</stddev>
+            </noise>
+          </ray>
+          <plugin name='laser_scan' filename='libgazebo_ros_laser.so'> 
+          <!--<plugin name='laser_scan' filename='libgazebo_ros_gpu_laser.so'>-->
+              <topicName>/scan</topicName>
+            <frameName>lidar_link</frameName> 
+          </plugin>
+        </sensor>
+      </gazebo>
+  </xacro:macro>
+
+</robot>

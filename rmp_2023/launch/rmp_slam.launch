@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<launch>
+  <param name="robot_description" command="$(find xacro)/xacro '$(find rmp_2023)/robot/pioneer.urdf.xacro'" />
+  
+  <node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen"
+        args="-model pioneer
+              -sdf
+              -x 0.0
+              -y 0.0
+              -z 0.1
+              -Y 0.0
+              -database pioneer2dx" >
+  </node>
+
+  <!-- <include file="$(find gazebo_ros)/launch/willowgarage_world.launch" />-->
+  <include file="$(find gazebo_ros)/launch/empty_world.launch" />
+
+  <!-- Publish joint values -->
+  <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" />
+
+  <!-- convert joint states to TF transforms for rviz, etc  -->
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"/>
+</launch>
