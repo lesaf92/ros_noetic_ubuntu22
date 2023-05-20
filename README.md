@@ -18,6 +18,7 @@ mamba create -n ros_env python=3.9 -c conda-forge
 mamba activate ros_env
 conda config --env --add channels conda-forge
 conda config --env --add channels robostack-staging
+# remove the defaults channel just in case, this might return an error if it is not in the list which is ok
 conda config --env --remove channels defaults
 mamba install ros-noetic-desktop-full
 mamba install catkin_tools
@@ -30,7 +31,9 @@ rosdep update
 conda deactivate
 conda activate ros_env
 ```
-
+5. Open a new terminal and test `roscore`, if everything went fine ROS should be installed successfully
+6. Always do the following steps in the `ros_env` environment
+7. 
 ## Disabling env
 
 To prevent loading the env for every new terminal session, comment the section below in your `bashrc`
