@@ -39,7 +39,7 @@ conda install -c robostack ros-noetic-gmapping
 conda install -c robostack ros-noetic-amcl
 conda install -c robostack ros-noetic-move-base
 conda install -c robostack ros-noetic-map-server
-conda install -c robostack ros-noetic-teleop-twist-keyboard
+conda install -c robostack ros-noetic-turtlebot3-teleop
 ```
 ... (still updating)
 
