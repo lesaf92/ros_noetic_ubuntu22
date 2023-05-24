@@ -2,33 +2,42 @@
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
 
 <xacro:macro name="controller" params="">
-	<!--
+<!--        <gazebo>
+          <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+          </plugin>
+        </gazebo>		
+-->
 	<gazebo>
 	  <plugin name="differential_drive_controller" filename="libgazebo_ros_diff_drive.so">
 	    <alwaysOn>true</alwaysOn>
-	    <updateRate>60</updateRate>
-	    <leftJoint>right_wheel_joint</leftJoint>
-	    <rightJoint>left_wheel_joint</rightJoint>
-	    <wheelSeparation>0.275</wheelSeparation>
+	    <updateRate>40</updateRate>
+	    <leftJoint>left_wheel_joint</leftJoint>
+	    <rightJoint>right_wheel_joint</rightJoint>
+	    <wheelSeparation>0.17</wheelSeparation>
 	    <wheelDiameter>0.1</wheelDiameter>
-	    <torque>20</torque>
 	    <commandTopic>cmd_vel</commandTopic>
 	    <odometryTopic>odom</odometryTopic>
 	    <odometryFrame>odom</odometryFrame>
 	    <robotBaseFrame>base_link</robotBaseFrame>
+            <publishOdom>false</publishOdom>
+            <publishOdomTF>false</publishOdomTF>
+            <legacyMode>false</legacyMode>
+            <!-- <odometrySource>1</odometrySource> -->
+            <wheelTorque>5</wheelTorque>            
 	  </plugin>
 	</gazebo>
-	-->
-	<gazebo>
+	
+  <!--
+  <gazebo>
     <plugin name="omni_steering" filename="libgazebo_ros_planar_move.so">
       <commandTopic>cmd_vel</commandTopic>
       <odometryTopic>odom</odometryTopic>
       <odometryFrame>odom</odometryFrame>
       <odometryRate>100.0</odometryRate>
-      <robotBaseFrame>base_dummy</robotBaseFrame>
-      <publishTF>true</publishTF>
+      <robotBaseFrame>base_link</robotBaseFrame>
+      <publishTF>0</publishTF>
     </plugin>
-  </gazebo>
+  </gazebo> -->
 
 </xacro:macro>
 

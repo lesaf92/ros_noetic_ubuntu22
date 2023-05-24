@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<launch>
+
+  <arg name="env_name" default="ambiente_1"/>
+  <arg name="pos_x" default="0.0"/>
+  <arg name="pos_y" default="0.0"/>
+  <arg name="psi" default="0.0"/>
+
+  <param name="robot_description" command="$(find xacro)/xacro '$(find rmp_2023)/robot/pioneer.urdf.xacro'" />
+  <env name="GAZEBO_MODEL_PATH" value="$(find rmp_2023)/models:$(optenv GAZEBO_MODEL_PATH)" />
+  
+  <node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen"
+        args="-model pioneer
+              -urdf
+              -x $(arg pos_x)
+              -y $(arg pos_y)
+              -z 0.1
+              -Y $(arg psi)
+              -param robot_description" >
+  </node>
+  
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="world_name" value="$(find rmp_2023)/worlds/$(arg env_name).world" /> 
+    <arg name="debug" value="false" />
+    <arg name="gui" value="true" />
+    <arg name="paused" value="false" />
+    <arg name="use_sim_time" value="true" />
+  </include> 
+
+
+  <!-- Publish joint values -->
+  <!-- <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" /> -->
+
+  <!-- convert joint states to TF transforms for rviz, etc  -->
+  <!-- <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"/> -->
+  
+  <node pkg="tf" type="static_transform_publisher" name="base_link_to_lidar_tf" args="0 0 0.5 0 0 0 base_link lidar_link 50" />
+  <node pkg="rmp_2023" type="odom_pub" name="odom_pub" />
+
+</launch>

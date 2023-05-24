@@ -1,7 +1,8 @@
 <?xml version="1.0"?>
 <robot name="pioneer" xmlns:xacro="http://www.ros.org/wiki/xacro">
   <xacro:macro name="robot_base">
-
+  
+  <!--############################ MATERIAL DEFINITION ##########################-->
   <gazebo reference="castor_wheel_link">
     <material>Gazebo/Black</material>
   </gazebo>
@@ -9,7 +10,7 @@
     <material>Gazebo/Black</material>
   </gazebo>
   
-  <!-- Dummy link -->
+  <!--############################ DUMMY LINK ##########################-->
   <link name="base_dummy">
     <visual>
         <origin xyz="0 0 0" rpy="0 0 0" />
@@ -18,12 +19,11 @@
         </geometry>
     </visual>
   </link>
-  <!-- BASE LINK  -->
-
+  <!--############################ BASE LINK ##########################-->
   <link name="base_link">
     <inertial>
-      <mass value="2"/>
-      <inertia ixx="0.0407" ixy="0.0" ixz="0.0" iyy="0.0407" iyz="0.0" izz="0.0756"/>
+      <mass value="5.67" />
+      <inertia ixx="0.07" ixy="0.0" ixz="0.0" iyy="0.08" iyz="0.0" izz="0.10" />
     </inertial>
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
@@ -45,11 +45,11 @@
       <parent link="base_dummy"/>
       <child link="base_link" />
   </joint>
-  <!-- WHEELS  -->
+  <!--############################ LEFT WHEEL ##########################-->
   <link name="left_wheel_link">
     <inertial>
-      <mass value="0.1"/>
-      <inertia ixx="0.0407" ixy="0.0" ixz="0.0" iyy="0.0407" iyz="0.0" izz="0.0756"/>
+      <mass value="1.5" />
+      <inertia ixx="0.0051" ixy="0.0" ixz="0.0" iyy="0.0051" iyz="0.0" izz="0.0090" />
     </inertial>
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
@@ -63,21 +63,32 @@
       <geometry>
         <mesh filename="model://pioneer2dx/meshes/wheel.dae"/>
       </geometry>
+      <surface>
+          <friction>
+            <ode>
+              <mu>100000.0</mu>
+              <mu2>100000.0</mu2>
+              <slip1>0.0</slip1>
+              <slip2>0.0</slip2>
+            </ode>
+          </friction>
+        </surface>
     </collision>
   </link>
-  <joint name="left_wheel_joint" type="fixed">
+  <joint name="left_wheel_joint" type="continuous">
       <origin xyz="0.1 .17 -0.09" rpy="0 1.5707 0" />
       <parent link="base_link"/>
       <child link="left_wheel_link" />
+      <axis xyz="0 1 0" />
   </joint>
-
+  <!--############################ RIGHT WHEEL ##########################-->
   <link name="right_wheel_link">
     <inertial>
-      <mass value="0.1"/>
-      <inertia ixx="0.0407" ixy="0.0" ixz="0.0" iyy="0.0407" iyz="0.0" izz="0.0756"/>
+      <mass value="1.5" />
+      <inertia ixx="0.0051" ixy="0.0" ixz="0.0" iyy="0.0051" iyz="0.0" izz="0.0090" />
     </inertial>
     <visual>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <origin rpy="0 0 3.1415" xyz="0 0 0"/>
       <geometry>
         <mesh filename="model://pioneer2dx/meshes/wheel.dae"/>
       </geometry>
@@ -88,14 +99,25 @@
       <geometry>
         <mesh filename="model://pioneer2dx/meshes/wheel.dae"/>
       </geometry>
+      <surface>
+          <friction>
+            <ode>
+              <mu>100000.0</mu>
+              <mu2>100000.0</mu2>
+              <slip1>0.0</slip1>
+              <slip2>0.0</slip2>
+            </ode>
+          </friction>
+        </surface>
     </collision>
   </link>
-  <joint name="right_wheel_joint" type="fixed">
-      <origin xyz="0.1 -.17 -0.09" rpy="0 1.5707 3.1415" />
+  <joint name="right_wheel_joint" type="continuous">
+      <origin xyz="0.1 -.17 -0.09" rpy="0 1.5707 0" />
       <parent link="base_link"/>
       <child link="right_wheel_link" />
+      <axis xyz="0 1 0" />
   </joint>
-
+  <!--############################ CASTOR WHEEL ##########################-->
   <link name="castor_wheel_link">
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
@@ -112,6 +134,16 @@
       <geometry>
         <sphere radius="0.04"/>
       </geometry>
+      <surface>
+          <friction>
+            <ode>
+              <mu>0</mu>
+              <mu2>0</mu2>
+              <slip1>1.0</slip1>
+              <slip2>1.0</slip2>
+            </ode>
+          </friction>
+        </surface>
     </collision>
   </link>
   <joint name="castor_wheel_joint" type="fixed">
@@ -121,7 +153,7 @@
   </joint>
 
   
-  <!-- LIDAR -->
+  <!--############################ LIDAR LINK ##########################-->
   <link name="lidar_link">
     <visual>
       <pose xyz="0 0 0"/>
