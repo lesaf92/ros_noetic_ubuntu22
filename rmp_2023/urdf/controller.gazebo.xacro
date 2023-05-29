@@ -20,7 +20,7 @@
 	    <odometryFrame>odom</odometryFrame>
 	    <robotBaseFrame>base_link</robotBaseFrame>
             <publishOdom>false</publishOdom>
-            <publishOdomTF>false</publishOdomTF>
+            <publishOdomTF>true</publishOdomTF>
             <legacyMode>false</legacyMode>
             <!-- <odometrySource>1</odometrySource> -->
             <wheelTorque>5</wheelTorque>            
