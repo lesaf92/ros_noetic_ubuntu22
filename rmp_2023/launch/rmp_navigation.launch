@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<launch>
+
+  <node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
+    <rosparam file="$(find rmp_2023)/config/costmap_common_params.yaml" command="load" ns="global_costmap" /> 
+    <rosparam file="$(find rmp_2023)/config/costmap_common_params.yaml" command="load" ns="local_costmap" />
+    <rosparam file="$(find rmp_2023)/config/local_params.yaml" command="load" />
+    <rosparam file="$(find rmp_2023)/config/global_params.yaml" command="load" /> 
+    <rosparam file="$(find rmp_2023)/config/planner_params.yaml" command="load" />
+  </node>
+  
+</launch>
